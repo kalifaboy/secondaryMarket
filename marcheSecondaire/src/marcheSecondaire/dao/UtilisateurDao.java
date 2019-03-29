@@ -8,6 +8,6 @@ import marcheSecondaire.beans.Utilisateur;
 public interface UtilisateurDao {
 
 	void ajouter(Utilisateur utilisateur, Societe societe);
-	int existe(Utilisateur utilisateur);
+	Utilisateur existe(Utilisateur utilisateur);
     List<Utilisateur> lister();
 }

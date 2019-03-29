@@ -27,7 +27,8 @@
                 <br />
                 <input type="submit" value="Connexion" class="sansLabel" />
                 <br />
-                <p class="${empty form.erreurs ? 'succes' : 'erreur'}">${form.resultat}</p>
+                <!-- <p class="${empty form.erreurs ? 'succes' : 'erreur'}">${form.resultat}</p><br/> -->
+                <p class="${empty requestScope ? '' : 'erreur'}">${requestScope.cantConnect}</p>
             </fieldset>
         </form>
       </section>

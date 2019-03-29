@@ -2,12 +2,20 @@ package marcheSecondaire.beans;
 
 public class Utilisateur {
 
+	private int id_utilisateur;
 	private String nom;
 	private String prenom;
 	private String email;
 	private String password;
 	private int societe;
 	private int type;
+	
+	public int getId_utilisateur() {
+		return id_utilisateur;
+	}
+	public void setId_utilisateur(int id_utilisateur) {
+		this.id_utilisateur = id_utilisateur;
+	}
 	public String getNom() {
 		return nom;
 	}

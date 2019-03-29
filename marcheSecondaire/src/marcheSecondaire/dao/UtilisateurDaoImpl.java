@@ -27,13 +27,24 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 		
 		try {
 			connexion = (Connection) daoFactory.getConnection();
-			preparedStatement = (PreparedStatement) connexion.prepareStatement("INSERT INTO utilisateur(email, nom, prenom, mot_de_passe, type, id_societe) VALUES(?,?,?,?,?,?);");
-			preparedStatement.setString(1, utilisateur.getEmail());
-			preparedStatement.setString(2, utilisateur.getNom());
-			preparedStatement.setString(3, utilisateur.getPrenom());
-			preparedStatement.setString(4, securePassword(utilisateur.getPassword()));
-			preparedStatement.setInt(5, utilisateur.getType());
-			preparedStatement.setInt(6, societe.getId_societe());
+			
+			if(societe != null) {// ajouter un membre societe
+				preparedStatement = (PreparedStatement) connexion.prepareStatement("INSERT INTO utilisateur(email, nom, prenom, mot_de_passe, type, id_societe) VALUES(?,?,?,?,?,?);");
+				preparedStatement.setString(1, utilisateur.getEmail());
+				preparedStatement.setString(2, utilisateur.getNom());
+				preparedStatement.setString(3, utilisateur.getPrenom());
+				preparedStatement.setString(4, securePassword(utilisateur.getPassword()));
+				preparedStatement.setInt(5, utilisateur.getType());
+				preparedStatement.setInt(6, societe.getId_societe());
+			}else {// ajouter un investisseur
+				preparedStatement = (PreparedStatement) connexion.prepareStatement("INSERT INTO utilisateur(email, nom, prenom, mot_de_passe, type) VALUES(?,?,?,?,?);");
+				preparedStatement.setString(1, utilisateur.getEmail());
+				preparedStatement.setString(2, utilisateur.getNom());
+				preparedStatement.setString(3, utilisateur.getPrenom());
+				preparedStatement.setString(4, securePassword(utilisateur.getPassword()));
+				preparedStatement.setInt(5, utilisateur.getType());
+			}
+			
 
 			preparedStatement.executeUpdate();
 		}catch(SQLException e) {
@@ -43,7 +54,7 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 	}
 	
 	@Override
-	public int existe(Utilisateur utilisateur) {
+	public Utilisateur existe(Utilisateur utilisateur) {
 		Connection connexion = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultat = null;
@@ -54,16 +65,20 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 			preparedStatement.setString(2, securePassword(utilisateur.getPassword()));
 			
 			resultat = preparedStatement.executeQuery();
-			resultat.next();
-			int id = resultat.getInt("id_utilisateur");
-			utilisateur.setNom(resultat.getString("nom"));
-			utilisateur.setPrenom(resultat.getString("prenom"));
-			utilisateur.setType(resultat.getInt("type"));
-			utilisateur.setSociete(resultat.getInt("id_societe"));
-			return id; // Il faut retourner l'objet utilisateur entièrement !!!!!!!!! pour l'utiliser à priori
+			if(resultat.next()) {
+				utilisateur.setId_utilisateur(resultat.getInt("id_utilisateur"));
+				utilisateur.setNom(resultat.getString("nom"));
+				utilisateur.setPrenom(resultat.getString("prenom"));
+				utilisateur.setType(resultat.getInt("type"));
+				utilisateur.setSociete(resultat.getInt("id_societe"));
+				
+				return utilisateur;
+			}
+			
+			return utilisateur; // Il faut retourner l'objet utilisateur entièrement !!!!!!!!! pour l'utiliser à priori
 		}catch(SQLException e) {
 			e.printStackTrace();
-			return -1;
+			return utilisateur;
 		}
 	}
 
