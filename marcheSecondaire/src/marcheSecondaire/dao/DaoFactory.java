@@ -38,4 +38,7 @@ public class DaoFactory {
     public SocieteDao getSocieteDao() {
     	return new SocieteDaoImpl(this);
     }
+    public SecteurDao getSecteurDao() {
+    	return new SecteurDaoImpl(this);
+    }
 }

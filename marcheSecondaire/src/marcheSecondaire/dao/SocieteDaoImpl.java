@@ -22,8 +22,10 @@ public class SocieteDaoImpl implements SocieteDao {
 		PreparedStatement preparedStatement = null;
 		try {
 			connexion = (Connection) daoFactory.getConnection();
-			preparedStatement = (PreparedStatement) connexion.prepareStatement("INSERT INTO societe(nom) VALUES(?);");
+			preparedStatement = (PreparedStatement) connexion.prepareStatement("INSERT INTO societe(nom, capitalisation, description) VALUES(?,?,?);");
 			preparedStatement.setString(1, societe.getNom());
+			preparedStatement.setInt(2, societe.getCapitalisation());
+			preparedStatement.setString(3, societe.getDescription());
 			preparedStatement.executeUpdate();
 		}catch(SQLException e) {
 			e.printStackTrace();
