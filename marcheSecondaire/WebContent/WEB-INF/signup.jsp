@@ -49,7 +49,7 @@
 	        </section>
         </c:when>
         <c:when test="${ param.type eq 'mmbr' }">
-        	<p><c:out value="${param.type }"/></p><br>
+        	<!-- <p><c:out value="${param.type }"/></p><br> -->
         	<section id ="SignUp"> 
 	          <form id = "formulaire" method="post" action="signup">
 	            <fieldset>
