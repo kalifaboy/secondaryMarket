@@ -192,14 +192,14 @@ form .requis{
                 <label for="nomste">Nom de la Société</label>
                 <input type="text" id="nomste" name="nomste" value="" size="34" maxlength="60" />
                 <br/>
-                <label for="nomste">Secteur(s)</label>
-				        <input type="checkbox" name="composant" value="agriculture"> Agriculture 
-				        <input type="checkbox" name="composant" value="assurance"> Assurances 
-				        <input type="checkbox" name="composant" value="banques"> Banques <br/>
-				        <input type="checkbox" name="composant" value="bdc"> Biens de consommation 
-				        <input type="checkbox" name="composant" value="hotellerie"> Hôtellerie 
-				        <input type="checkbox" name="composant" value="industrie"> Industrie 
-				        <input type="checkbox" name="composant" value="tsi"> Technologies et services de l'information <br/> 
+                <label for="sect">Secteur(s)</label>
+				        <input type="radio" name="composant" value="Agriculture"> Agriculture 
+				        <input type="radio" name="composant" value="Assurances"> Assurances 
+				        <input type="radio" name="composant" value="Banques"> Banques <br/>
+				        <input type="radio" name="composant" value="Biens de consommation"> Biens de consommation 
+				        <input type="radio" name="composant" value="Hotellerie"> Hotellerie 
+				        <input type="radio" name="composant" value="Industrie"> Industrie 
+				        <input type="radio" name="composant" value="Technologies et services de l'information"> Technologies et services de l'information <br/> 
                 <input type="submit" value="Filtrer" class="sansLabel" />
                 <br/><br/>
                 <table class="tg">
