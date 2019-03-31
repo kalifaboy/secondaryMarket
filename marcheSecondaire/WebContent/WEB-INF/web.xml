@@ -41,13 +41,12 @@
     <servlet-name>InvestPot</servlet-name>
     <url-pattern>/investPostPages/connected</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>CompleterInv</servlet-name>
     <servlet-class>marcheSecondaire.servlets.CompleterInv</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>CompleterInv</servlet-name>
-    <url-pattern>/investPostPages/completer</url-pattern>
+    <url-pattern>/investPotPages/completer</url-pattern>
   </servlet-mapping>
 </web-app>

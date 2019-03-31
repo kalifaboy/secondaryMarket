@@ -12,7 +12,7 @@
             <p id="AM"> AssetMarket </p>
             <div id="menu">
                 <ul id="menu-deroulant">
-                    <li><a href="investPostPages/completer">Completer votre Profil </a></li>
+                    <li><a href="investPotPages/completer">Completer votre Profil </a></li>
                     <li><a href="/marcheSecondaire/deconnexion">Logout</a></li>
                 </ul>
             </div>   

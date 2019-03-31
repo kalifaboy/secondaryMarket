@@ -67,7 +67,7 @@ public class Connexion extends HttpServlet {
 					break;
 				case 2:
 					session.setAttribute(ATT_SESSION_INV, utilisateur);
-					this.getServletContext().getRequestDispatcher("/investPages/connected.jsp?id="+id).forward(request, response);
+					this.getServletContext().getRequestDispatcher("/investPages/connected.jsp?page="+1).forward(request, response);
 					break;
 				case 3:
 					session.setAttribute(ATT_SESSION_INV_POT_USER, utilisateur);

@@ -81,6 +81,8 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 			return utilisateur;
 		}
 	}
+	
+	
 
 	@Override
 	public List<Utilisateur> lister() {
@@ -106,6 +108,27 @@ public class UtilisateurDaoImpl implements UtilisateurDao {
 			e.printStackTrace();
 			return null;
 		}
+	}
+
+	@Override
+	public Utilisateur completerInv(Utilisateur utilisateur) {
+		Connection connexion = null;
+		PreparedStatement preparedStatement = null;
+		try {
+			connexion = (Connection) daoFactory.getConnection();
+			preparedStatement = (PreparedStatement) connexion.prepareStatement("UPDATE utilisateur SET cin=?, carte=?, dateexp=?, type=? WHERE id_utilisateur=?;");
+			preparedStatement.setString(1, utilisateur.getCin());
+			preparedStatement.setString(2, utilisateur.getCarte());
+			preparedStatement.setDate(3, java.sql.Date.valueOf((utilisateur.getDateexp())));
+			preparedStatement.setInt(4, 2);
+			preparedStatement.setInt(5, utilisateur.getId_utilisateur());
+			
+			preparedStatement.executeUpdate();
+
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
