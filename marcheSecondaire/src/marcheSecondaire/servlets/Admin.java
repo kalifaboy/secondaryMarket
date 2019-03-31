@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import marcheSecondaire.beans.Secteur;
 import marcheSecondaire.beans.Societe;
+import marcheSecondaire.dao.DaoFactory;
 import marcheSecondaire.dao.SecteurDao;
 import marcheSecondaire.dao.SocieteDao;
 import marcheSecondaire.forms.SocFormAdmin;
@@ -28,6 +29,12 @@ public class Admin extends HttpServlet {
 	
 	private SocieteDao societedao;
 	private SecteurDao secteurdao;
+	
+	public void init() throws ServletException {
+        DaoFactory daoFactory = DaoFactory.getInstance();
+        this.societedao = daoFactory.getSocieteDao();
+        this.secteurdao = daoFactory.getSecteurDao();
+    }
 	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -61,6 +68,7 @@ public class Admin extends HttpServlet {
 			SocFormAdmin form = new SocFormAdmin();
 			Societe societe = form.rechercher(request);
 			Secteur secteur = form.chercherSocieteBySec();
+			//System.out.println(societe.getNom()); // debug
 			if(secteur.getNom() == null && societe.getNom() != null) {
 				societe = societedao.getByNom(societe.getNom());
 				secteur = secteurdao.getNomById(societe.getId_secteur());

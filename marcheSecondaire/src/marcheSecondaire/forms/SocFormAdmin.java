@@ -15,6 +15,8 @@ public class SocFormAdmin {
 	public Societe rechercher(HttpServletRequest request) {
 		String soc = getValeurChamp( request, CHAMP_SOC );
         String sector = getValeurChamp( request, CHAMP_SEC );
+        societeObj = new Societe();
+        secteurObj = new Secteur();
         societeObj.setNom(soc);
         secteurObj.setNom(sector);
 		return societeObj;

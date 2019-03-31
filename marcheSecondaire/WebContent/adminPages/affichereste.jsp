@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 
 <html>
@@ -185,7 +186,7 @@ form .requis{
         </header>
         <section id ="forminfoste"> 
           <center>
-            <form id = "formste" method="post" action="XXX">
+            <form id = "formste" method="post" action="connected?page=2">
               <fieldset>
                 <legend>Afficher les sociétés disponibles</legend>
                 <p>Précisez les critères de votre recherche.</p>
@@ -202,6 +203,8 @@ form .requis{
 				        <input type="radio" name="composant" value="Technologies et services de l'information"> Technologies et services de l'information <br/> 
                 <input type="submit" value="Filtrer" class="sansLabel" />
                 <br/><br/>
+                
+                
                 <table class="tg">
         				  <tr>
         				    <th class="tg-7btt">Nom de la société</th>
@@ -209,6 +212,49 @@ form .requis{
         				    <th class="tg-7btt">Secteur d'activité</th>
         				    <th class="tg-7btt">Description</th>
         				  </tr>
+        				  
+        				  <c:choose>
+        				  	<c:when test="${!empty societe }">
+        				  
+        				  <tr>
+        				    <td class="tg-0lax"><c:out value="${societe.nom}" /></td>
+        				    <td class="tg-0lax"><c:out value="${societe.capitalisation}" /></td>
+        				    <td class="tg-0lax"><c:out value="${secteur.nom}" /></td>
+        				    <td class="tg-0lax"><c:out value="${societe.description}" /></td>
+        				  </tr>
+        				  
+        				  
+        				  	</c:when>
+        				  	
+        				  	<c:when test="${!empty societes }">
+        				  	
+        				  		<c:if test="${!empty secteurs }">
+        				  			<c:forEach var="soc" items="${ societes }" varStatus="status">
+            							<tr>
+        				    				<td class="tg-0lax"><c:out value="${soc.nom}" /></td>
+					        				<td class="tg-0lax"><c:out value="${soc.capitalisation}" /></td>
+					        				<td class="tg-0lax"><c:out value="${secteurs[status.index].nom}" /></td>
+					        				<td class="tg-0lax"><c:out value="${soc.description}" /></td>
+					        			</tr>
+        							</c:forEach>
+        				  		</c:if>
+        				  		
+        				  		<c:if test="${!empty secteur }">
+        				  			<c:forEach var="soc" items="${ societes }">
+            							<tr>
+        				    				<td class="tg-0lax"><c:out value="${soc.nom}" /></td>
+					        				<td class="tg-0lax"><c:out value="${soc.capitalisation}" /></td>
+					        				<td class="tg-0lax"><c:out value="${secteur.nom}" /></td>
+					        				<td class="tg-0lax"><c:out value="${soc.description}" /></td>
+					        			</tr>
+        							</c:forEach>
+        				  		</c:if>
+        				  	
+        				  	</c:when>
+        				  
+        				  
+        				  </c:choose>
+        				  
         				  <tr>
         				    <td class="tg-0lax"></td>
         				    <td class="tg-0lax"></td>
