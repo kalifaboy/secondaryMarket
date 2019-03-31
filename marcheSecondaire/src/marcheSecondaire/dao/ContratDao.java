@@ -1,9 +1,9 @@
 package marcheSecondaire.dao;
 
-import java.util.List;
+import java.util.Map;
 
 import marcheSecondaire.beans.Contrat;
 
 public interface ContratDao {
-	public List<Contrat> lister();
+	public Map<Integer, Contrat> lister();
 }
