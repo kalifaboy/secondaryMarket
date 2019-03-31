@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 
 <html>
@@ -179,12 +180,12 @@ fieldset{
                <center>
                 <legend>Contrats disponibles</legend>
                 <p>Précisez les critères de votre recherche.</p>
-                <label for="nomste">Nom de la Société</label>
-                <input type="text" id="nomste" name="nomste" value="" size="34" maxlength="60" />
+                <label for="societe">Nom de la Société</label>
+                <input type="text" id="societe" name="societe" value="" size="34" maxlength="60" />
                 <br/>
-                <label for="nomste">Type(s) de contrat(s) </label>
-				        <input type="checkbox" name="composant" value="agriculture"> Action
-				        <input type="checkbox" name="composant" value="assurance"> Stock-option  
+                <label for="type_con">Type(s) de contrat(s) </label>
+				        <input type="radio" name="composant" value="Action"> Action
+				        <input type="radio" name="composant" value="Stock option"> Stock-option  
                 <input type="submit" value="Filtrer" class="sansLabel" />
                 <br/><br/>
                 <table class="tg">

@@ -3,7 +3,9 @@ package marcheSecondaire.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
@@ -129,4 +131,38 @@ public class SocieteDaoImpl implements SocieteDao {
     }
 	return societes;
 }
+
+	@Override
+	public Map<Integer, Societe> listerMap() {
+		Map<Integer, Societe> societes = new HashMap<Integer, Societe>();
+		Connection connexion = null;
+        Statement statement = null;
+        ResultSet resultat = null;
+
+        try {
+            connexion = (Connection) daoFactory.getConnection();
+            statement = (Statement) connexion.createStatement();
+            resultat = statement.executeQuery("SELECT * FROM societe;");
+
+            while (resultat.next()) {
+                String nom = resultat.getString("nom");
+                int capi = resultat.getInt("capitalisation");
+                int sect = resultat.getInt("id_secteur");
+                String desc = resultat.getString("description");
+                int id = resultat.getInt("id_societe");
+                
+                Societe soc = new Societe();
+                soc.setNom(nom);
+                soc.setCapitalisation(capi);;
+                soc.setId_secteur(sect);
+                soc.setDescription(desc);
+                soc.setId_societe(id);
+                
+                societes.put(id, soc);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return societes;
+	}
 }

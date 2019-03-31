@@ -11,4 +11,6 @@ public interface UtilisateurDao {
 	Utilisateur existe(Utilisateur utilisateur);
 	Utilisateur completerInv(Utilisateur utilisateur);
     List<Utilisateur> lister();
+    List<Utilisateur> listerInv();
+    List<Utilisateur> listerMmbr();
 }

@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-   <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Sociétés</title>
+        <title>Les investisseurs</title>
         <style>
 body{
      margin:0;
@@ -32,17 +32,7 @@ fieldset{
         padding: 10px;
         border: 1px #07163B solid;
         }
-legend{
-        font-weight: bold;
-        color: #07163B;
-        }
 
-form input.sansLabel{
-         margin-left: 320px;
-         }
-form .requis{
-          color: #c00;
-          }
 #SignUp{
        position: absolute;
        top:10%; 
@@ -165,9 +155,9 @@ form .requis{
 }  
 .tg  {border-collapse:collapse;border-spacing:0;}
 .tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-.tg .tg-7btt{font-weight:bold;border-color:inherit;text-align:center;vertical-align:top}
-.tg .tg-0lax{text-align:left;vertical-align:top}
+  .tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
+  .tg .tg-7btt{font-weight:bold;border-color:inherit;text-align:center;vertical-align:top}
+  .tg .tg-0lax{text-align:left;vertical-align:top}
     </style>
     </head>
     <body>
@@ -185,87 +175,36 @@ form .requis{
             </div>   
         </header>
         <section id ="forminfoste"> 
-          <center>
-            <form id = "formste" method="post" action="connected?page=2">
+            <form id = "formste" method="post" action="XXX">
               <fieldset>
-                <legend>Afficher les sociétés disponibles</legend>
-                <p>Précisez les critères de votre recherche.</p>
-                <label for="nomste">Nom de la Société</label>
-                <input type="text" id="nomste" name="nomste" value="" size="34" maxlength="60" />
-                <br/>
-                <label for="sect">Secteur(s)</label>
-				        <input type="radio" name="composant" value="Agriculture"> Agriculture 
-				        <input type="radio" name="composant" value="Assurances"> Assurances 
-				        <input type="radio" name="composant" value="Banques"> Banques <br/>
-				        <input type="radio" name="composant" value="Biens de consommation"> Biens de consommation 
-				        <input type="radio" name="composant" value="Hotellerie"> Hotellerie 
-				        <input type="radio" name="composant" value="Industrie"> Industrie 
-				        <input type="radio" name="composant" value="Technologies et services de l'information"> Technologies et services de l'information <br/> 
-                <input type="submit" value="Filtrer" class="sansLabel" />
+               <center>
+                <legend>La liste des investisseurs inscrits</legend>
                 <br/><br/>
-                
-                
                 <table class="tg">
         				  <tr>
-        				    <th class="tg-7btt">Nom de la société</th>
-        				    <th class="tg-7btt">Capitalisation boursière</th>
-        				    <th class="tg-7btt">Secteur d'activité</th>
-        				    <th class="tg-7btt">Description</th>
+        				    <th class="tg-7btt">Nom</th>
+        				    <th class="tg-7btt">Prénom </th>
+        				    <th class="tg-7btt">CIN</th>
         				  </tr>
-        				  
-        				  <c:choose>
-        				  	<c:when test="${!empty societe }">
-        				  
+        				  <c:if test="${!empty utilisateurs }">
+        				  	<c:forEach var="utilisateur" items="${ utilisateurs }">
+        				  	<tr>
+        				  		<td class="tg-0lax"><c:out value="${utilisateur.nom}" /></td>
+        				    	<td class="tg-0lax"><c:out value="${utilisateur.prenom}" /></td>
+        				    	<td class="tg-0lax"><c:out value="${utilisateur.cin}" /></td>
+        				    </tr>
+        				  	</c:forEach>
+        				  </c:if>
         				  <tr>
-        				    <td class="tg-0lax"><c:out value="${societe.nom}" /></td>
-        				    <td class="tg-0lax"><c:out value="${societe.capitalisation}" /></td>
-        				    <td class="tg-0lax"><c:out value="${secteur.nom}" /></td>
-        				    <td class="tg-0lax"><c:out value="${societe.description}" /></td>
-        				  </tr>
-        				  
-        				  
-        				  	</c:when>
-        				  	
-        				  	<c:when test="${!empty societes }">
-        				  	
-        				  		<c:if test="${!empty secteurs }">
-        				  			<c:forEach var="soc" items="${ societes }" varStatus="status">
-            							<tr>
-        				    				<td class="tg-0lax"><c:out value="${soc.nom}" /></td>
-					        				<td class="tg-0lax"><c:out value="${soc.capitalisation}" /></td>
-					        				<td class="tg-0lax"><c:out value="${secteurs[status.index].nom}" /></td>
-					        				<td class="tg-0lax"><c:out value="${soc.description}" /></td>
-					        			</tr>
-        							</c:forEach>
-        				  		</c:if>
-        				  		
-        				  		<c:if test="${!empty secteur }">
-        				  			<c:forEach var="soc" items="${ societes }">
-            							<tr>
-        				    				<td class="tg-0lax"><c:out value="${soc.nom}" /></td>
-					        				<td class="tg-0lax"><c:out value="${soc.capitalisation}" /></td>
-					        				<td class="tg-0lax"><c:out value="${secteur.nom}" /></td>
-					        				<td class="tg-0lax"><c:out value="${soc.description}" /></td>
-					        			</tr>
-        							</c:forEach>
-        				  		</c:if>
-        				  	
-        				  	</c:when>
-        				  
-        				  
-        				  </c:choose>
-        				  
-        				  
-        				  <tr>
-        				    <td class="tg-0lax"></td>
         				    <td class="tg-0lax"></td>
         				    <td class="tg-0lax"></td>
         				    <td class="tg-0lax"></td>
         				  </tr>
         				</table>
+                <br/><br/>
               </fieldset>
+              </center>
             </form>
-          </center>
         </section> 
         <footer>          
         </footer>   
